@@ -66,11 +66,12 @@ spec:
       - name: {{ template "mongo.name" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        # command:
-        #   - mongod
-        #   - "--bind_ip_all"
-        #   - "--replSet"
-        #   - "rs0"
+        {{- if .Values.args }}
+        args:
+        {{- range .Values.args }}
+          - {{ . | quote }}
+        {{- end }}
+        {{- end }}
         env:
         - name: TZ
           valueFrom:

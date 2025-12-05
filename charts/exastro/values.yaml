@@ -35,6 +35,9 @@ global:
       DEFAULT_LANGUAGE: "ja"
       LANGUAGE: "en"
       TZ: "Asia/Tokyo"
+      # Please set the URL to access
+      EXTERNAL_URL: ""
+      EXTERNAL_URL_MNG: ""
     secret:
       ENCRYPT_KEY: ""
   pfAuditLogDefinition:
@@ -382,10 +385,13 @@ exastro-platform:
       tag: ""
 
   platform-auth:
-    extraEnv:
-      # Please set the URL to access
-      EXTERNAL_URL: ""
-      EXTERNAL_URL_MNG: ""
+    extraEnv: {}
+      # The following variables, EXTERNAL_URL and EXTERNAL_URL_MNG, are currently deprecated
+      # and are scheduled to be removed in version v2.10.0.
+      # Please use the corresponding variables under `pfGlobalDefinition: config:` instead.
+      #
+      # EXTERNAL_URL: ""
+      # EXTERNAL_URL_MNG: ""
     ingress:
       enabled: true
       hosts:
@@ -521,6 +527,7 @@ exastro-platform:
         postgresql['checkpoint_timeout'] = "10min"
         external_url 'http://gitlab:40080'
         nginx['listen_port'] = 40080
+        nginx['listen_https'] = false
         gitlab_rails['initial_root_password'] = "${GITLAB_ROOT_PASSWORD:-}"
         gitlab_rails['registry_enabled'] = false;
         gitlab_rails['db_prepared_statements'] = false;
@@ -585,6 +592,9 @@ exastro-platform:
         # release: "pv-mongo"
       matchExpressions:
         # - {key: name, operator: In, values: [pv-mongo]}
+    args:
+      # - "--config"
+      # - "/etc/mongo/mongod.conf"
     dbSetup:
       dbConfInfo:
         name: mongo-server-conf-config
@@ -593,7 +603,7 @@ exastro-platform:
             verbosity: 0
             # destination: file
             # path: /root/logs/mongod.log
-            timeStampFormat: iso8601-utc
+            # timeStampFormat: iso8601-utc
           # storage:
           #   directoryPerDB: true
           #   dbPath: /root/data

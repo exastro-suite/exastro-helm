@@ -65,6 +65,9 @@ persistence:
     dataDir: /data/db
     confDir: /etc/mongo
 
+args:
+  # - "--config"
+  # - "/etc/mongo/mongod.conf"
 dbSetup:
   dbConfInfo:
     name: mongo-server-conf-config
@@ -73,7 +76,7 @@ dbSetup:
         verbosity: 0
         # destination: file
         # path: /root/logs/mongod.log
-        timeStampFormat: iso8601-utc
+        # timeStampFormat: iso8601-utc
       # storage:
       #   directoryPerDB: true
       #   dbPath: /root/data

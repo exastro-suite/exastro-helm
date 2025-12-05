@@ -61,6 +61,13 @@ global:
     secret:
       MONGO_ADMIN_USER: "admin"
       MONGO_ADMIN_PASSWORD: "Ch@ngeMeMGAdm"
+  pfGlobalDefinition:
+    name: pf-global
+    enabled: true
+    config:
+      # Please set the URL to access
+      EXTERNAL_URL: ""
+      EXTERNAL_URL_MNG: ""
 
 extraEnv:
   EXECUTE_INTERVAL: "3"

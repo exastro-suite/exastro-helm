@@ -54,11 +54,13 @@ spec:
             {{- range $define := .Values.global -}}
             {{-   range $config, $value := $define.config -}}
             {{-     if or (eq $define.name "pf-global") (eq $define.name "pf-ita") (eq $define.name "keycloak") (eq $define.name "pf-database") }}
+            {{-       if not (or (eq $config "EXTERNAL_URL") (eq $config "EXTERNAL_URL_MNG")) }}
             - name: {{ $config }}
               valueFrom:
                 configMapKeyRef:
                   name: platform-params-{{ $define.name }}
                   key: {{ $config }}
+            {{-       end -}}
             {{-     end -}}
             {{-   end -}}
             {{-   range $secret, $value := $define.secret -}}
@@ -72,11 +74,45 @@ spec:
             {{-   end }}
             {{- end -}}
             {{ range $config, $value := .Values.extraEnv }}
+            {{-  if not (or (eq $config "EXTERNAL_URL") (eq $config "EXTERNAL_URL_MNG")) }}
             - name: {{ $config }}
               valueFrom:
                 configMapKeyRef:
                   name: params-{{ template "platform-auth.name" $ }}
                   key: {{ $config }}
+            {{-  end -}}
+            {{- end }}
+            {{- $pfGlobalExternalUrl := "" }}
+            {{- $pfGlobalExternalUrlMng := "" }}
+            {{- range $define := .Values.global -}}
+            {{-   if eq $define.name "pf-global" }}
+            {{-     $pfGlobalExternalUrl = default "" (get $define.config "EXTERNAL_URL") }}
+            {{-     $pfGlobalExternalUrlMng = default "" (get $define.config "EXTERNAL_URL_MNG") }}
+            {{-   end }}
+            {{- end }}
+            {{- $pfAuthExternalUrl := default "" (get (default dict .Values.extraEnv) "EXTERNAL_URL") }}
+            {{- $pfAuthExternalUrlMng := default "" (get (default dict .Values.extraEnv) "EXTERNAL_URL_MNG") }}
+            {{- if or $pfGlobalExternalUrl $pfAuthExternalUrl }}
+            - name: EXTERNAL_URL
+              valueFrom:
+                configMapKeyRef:
+            {{-   if and (not $pfGlobalExternalUrl) $pfAuthExternalUrl }}
+                  name: params-{{ template "platform-auth.name" $ }}
+            {{-   else }}
+                  name: platform-params-pf-global
+            {{-   end }}
+                  key: EXTERNAL_URL
+            {{- end }}
+            {{- if or $pfGlobalExternalUrlMng $pfAuthExternalUrlMng }}
+            - name: EXTERNAL_URL_MNG
+              valueFrom:
+                configMapKeyRef:
+            {{-   if and (not $pfGlobalExternalUrlMng) $pfAuthExternalUrlMng }}
+                  name: params-{{ template "platform-auth.name" $ }}
+            {{-   else }}
+                  name: platform-params-pf-global
+            {{-   end }}
+                  key: EXTERNAL_URL_MNG
             {{- end }}
           volumeMounts:
             - name: volume-{{ template "platform-auth.name" . }}-auditlog

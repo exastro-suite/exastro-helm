@@ -92,6 +92,15 @@ spec:
                   name: ita-params-{{ $define.name }}
                   key: {{ $config }}
             {{-     end -}}
+            {{-     if (eq $define.name "pf-global") }}
+            {{-       if (eq $config "EXTERNAL_URL") }}
+            - name: {{ $config }}
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-params-{{ $define.name }}
+                  key: {{ $config }}
+            {{-       end -}}
+            {{-     end -}}
             {{-   end -}}
             {{-   range $secret, $value := $define.secret }}
             {{-     if or (eq $define.name "ita-global") (eq $define.name "gitlab") (eq $define.name "ita-database") }}

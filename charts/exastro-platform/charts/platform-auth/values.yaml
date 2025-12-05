@@ -20,6 +20,10 @@ global:
       PLATFORM_WEB_PROTOCOL: "http"
       PLATFORM_WEB_HOST: "platform-web"
       PLATFORM_WEB_PORT: "8000"
+
+      # Please set the URL to access
+      EXTERNAL_URL: ""
+      EXTERNAL_URL_MNG: ""
     secret:
       ENCRYPT_KEY: ""
   pfAuditLogDefinition:
@@ -116,9 +120,9 @@ extraEnv:
   AUDIT_LOG_FILE_MAX_BYTE: "100000000"
   AUDIT_LOG_BACKUP_COUNT: "30"
 
-  # Please set the URL to access
-  EXTERNAL_URL: ""
-  EXTERNAL_URL_MNG: ""
+  # # Please set the URL to access
+  # EXTERNAL_URL: ""
+  # EXTERNAL_URL_MNG: ""
 
 replicaCount: 1
 

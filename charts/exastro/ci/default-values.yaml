@@ -50,6 +50,9 @@ global:
       DEFAULT_LANGUAGE: "ja"
       LANGUAGE: "en"
       TZ: "Asia/Tokyo"
+      # Please set the URL to access
+      EXTERNAL_URL: ""
+      EXTERNAL_URL_MNG: ""
     secret:
       ENCRYPT_KEY: ""
   pfDatabaseDefinition:
@@ -407,10 +410,10 @@ exastro-platform:
       tag: ""
 
   platform-auth:
-    extraEnv:
-      # Please set the URL to access
-      EXTERNAL_URL: ""
-      EXTERNAL_URL_MNG: ""
+    extraEnv: {}
+      # # Please set the URL to access
+      # EXTERNAL_URL: ""
+      # EXTERNAL_URL_MNG: ""
     ingress:
       enabled: true
       hosts:
