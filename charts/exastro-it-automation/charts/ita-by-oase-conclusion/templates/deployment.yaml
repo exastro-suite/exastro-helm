@@ -146,22 +146,10 @@ spec:
               mountPath: {{ .Values.persistence.mountPath.homeDir }}
             - name: volume-{{ template "oase-conclusion.name" . }}-tmp
               mountPath: {{ .Values.persistence.mountPath.tmp }}
-          # livenessProbe:
-          #   tcpSocket:
-          #     port: 8080
-          #   # httpGet:
-          #   #   path: /
-          #   #   port: 8080
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 10
-          # readinessProbe:
-          #   tcpSocket:
-          #     port: 8080
-          #   # httpGet:
-          #   #   path: /
-          #   #   port: 8080
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 10
+          startupProbe:
+            {{- toYaml .Values.startupProbe | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
