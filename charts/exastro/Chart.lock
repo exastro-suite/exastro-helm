@@ -1,7 +1,7 @@
 dependencies:
 - name: exastro-it-automation
   repository: file://../exastro-it-automation
-  version: 2.7.1
+  version: 2.7.2
 - name: exastro-platform
   repository: file://../exastro-platform
   version: 1.11.1
