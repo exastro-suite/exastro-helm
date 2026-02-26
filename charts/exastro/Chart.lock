@@ -5,5 +5,5 @@ dependencies:
 - name: exastro-platform
   repository: file://../exastro-platform
   version: 1.11.1
-digest: sha256:30e6253893a91920652bab9be8aa5e8050a4475f25cad17260d31179a466aa1f
-generated: "2025-12-09T18:34:47.988819285+09:00"
+digest: sha256:6527d2f11ce9f940b6d81d3c918e208c8a745312a1332f2776cb2b2457899f9f
+generated: "2026-02-26T22:38:50.871017151+09:00"
