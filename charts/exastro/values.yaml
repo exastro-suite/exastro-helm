@@ -317,6 +317,10 @@ exastro-it-automation:
       repository: "docker.io/exastro/exastro-it-automation-by-oase-conclusion"
       tag: ""
       pullPolicy: IfNotPresent
+    startupProbe:
+      disabled: true
+    livenessProbe:
+      disabled: true
 
   ita-by-terraform-cli-execute:
     replicaCount: 1
