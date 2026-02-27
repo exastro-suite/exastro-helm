@@ -220,3 +220,25 @@ mongo:
     runAsUser: 1000
     runAsGroup: 1000
     runAsNonRoot: true
+
+startupProbe:
+  exec:
+    command:
+      - sh
+      - -c
+      - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 600))"
+  timeoutSeconds: 30
+  periodSeconds: 10
+  successThreshold: 1
+  failureThreshold: 30
+
+livenessProbe:
+  exec:
+    command:
+      - sh
+      - -c
+      - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 600))"
+  timeoutSeconds: 30
+  periodSeconds: 10
+  successThreshold: 1
+  failureThreshold: 3
