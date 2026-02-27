@@ -222,7 +222,6 @@ mongo:
     runAsNonRoot: true
 
 startupProbe:
-  disabled: true
   exec:
     command:
       - sh
@@ -234,7 +233,6 @@ startupProbe:
   failureThreshold: 30
 
 livenessProbe:
-  disabled: true
   exec:
     command:
       - sh
