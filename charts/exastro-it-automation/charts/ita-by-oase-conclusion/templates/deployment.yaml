@@ -146,10 +146,14 @@ spec:
               mountPath: {{ .Values.persistence.mountPath.homeDir }}
             - name: volume-{{ template "oase-conclusion.name" . }}-tmp
               mountPath: {{ .Values.persistence.mountPath.tmp }}
+          {{- if and .Values.startupProbe (or (not (hasKey .Values.startupProbe "disabled")) (not .Values.startupProbe.disabled)) }}
           startupProbe:
             {{- toYaml .Values.startupProbe | nindent 12 }}
+          {{- end }}
+          {{- if and .Values.livenessProbe (or (not (hasKey .Values.livenessProbe "disabled")) (not .Values.livenessProbe.disabled)) }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
