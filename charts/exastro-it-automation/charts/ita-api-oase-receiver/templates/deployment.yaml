@@ -161,10 +161,8 @@ spec:
             - name: port-http
               containerPort: {{ .Values.extraEnv.LISTEN_PORT }}
               protocol: TCP
-          {{- if and .Values.startupProbe (or (not (hasKey .Values.startupProbe "disabled")) (not .Values.startupProbe.disabled)) }}
           startupProbe:
             {{- toYaml .Values.startupProbe | nindent 12 }}
-          {{- end }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
