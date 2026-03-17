@@ -105,6 +105,8 @@ spec:
         readinessProbe:
           {{- toYaml .Values.readinessProbe | nindent 10 }}
         {{- end }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: mongo-server-conf
           configMap:
