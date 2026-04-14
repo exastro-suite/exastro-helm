@@ -152,25 +152,6 @@ exastro-it-automation:
     serviceAccount:
       create: false
       name: "ita-by-ansible-execute-sa"
-    startupProbe:
-      exec:
-        command:
-          - sh
-          - -c
-          - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 86400))"
-      timeoutSeconds: 10
-      periodSeconds: 5
-      failureThreshold: 3
-    livenessProbe:
-      exec:
-        command:
-          - sh
-          - -c
-          - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 86400))"
-      timeoutSeconds: 10
-      periodSeconds: 5
-      failureThreshold: 3
-
 
   ita-by-ansible-legacy-role-vars-listup:
     replicaCount: 1
@@ -193,24 +174,6 @@ exastro-it-automation:
       repository: "docker.io/exastro/exastro-it-automation-by-ansible-legacy-vars-listup"
       tag: ""
       pullPolicy: IfNotPresent
-    startupProbe:
-      exec:
-        command:
-          - sh
-          - -c
-          - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 86400))"
-      timeoutSeconds: 10
-      periodSeconds: 5
-      failureThreshold: 3
-    livenessProbe:
-      exec:
-        command:
-          - sh
-          - -c
-          - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 86400))"
-      timeoutSeconds: 10
-      periodSeconds: 5
-      failureThreshold: 3
 
   ita-by-ansible-pioneer-vars-listup:
     replicaCount: 1
@@ -277,24 +240,6 @@ exastro-it-automation:
       repository: "docker.io/exastro/exastro-it-automation-by-conductor-synchronize"
       tag: ""
       pullPolicy: IfNotPresent
-    startupProbe:
-      exec:
-        command:
-          - sh
-          - -c
-          - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 86400))"
-      timeoutSeconds: 10
-      periodSeconds: 5
-      failureThreshold: 3
-    livenessProbe:
-      exec:
-        command:
-          - sh
-          - -c
-          - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 86400))"
-      timeoutSeconds: 10
-      periodSeconds: 5
-      failureThreshold: 3
 
   ita-by-excel-export-import:
     replicaCount: 1
@@ -339,24 +284,6 @@ exastro-it-automation:
       repository: "docker.io/exastro/exastro-it-automation-by-hostgroup-split"
       tag: ""
       pullPolicy: IfNotPresent
-    startupProbe:
-      exec:
-        command:
-          - sh
-          - -c
-          - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 86400))"
-      timeoutSeconds: 10
-      periodSeconds: 5
-      failureThreshold: 3
-    livenessProbe:
-      exec:
-        command:
-          - sh
-          - -c
-          - test "$(cat /tmp/liveness 2>/dev/null || echo 0)" -gt "$(($(date +%s) - 86400))"
-      timeoutSeconds: 10
-      periodSeconds: 5
-      failureThreshold: 3
 
   ita-by-menu-create:
     replicaCount: 1
