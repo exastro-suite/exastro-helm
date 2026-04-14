@@ -116,6 +116,10 @@ spec:
               mountPath: {{ .Values.persistence.mountPath.homeDir }}
             - name: volume-{{ template "ita-by-terraform-cloud-ep-execute.name" . }}-tmp
               mountPath: {{ .Values.persistence.mountPath.tmp }}
+          startupProbe:
+            {{- toYaml .Values.startupProbe | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
           # livenessProbe:
           #   tcpSocket:
           #     port: 8080
