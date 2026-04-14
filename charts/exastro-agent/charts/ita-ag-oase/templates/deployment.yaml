@@ -85,9 +85,9 @@ spec:
             - name: volume-{{ template "ita-ag-oase.name" $top }}-tmp
               mountPath: {{ $top.Values.persistence.mountPath.tmp }}
           startupProbe:
-            {{- toYaml .Values.startupProbe | nindent 12 }}
+            {{- toYaml $top.Values.startupProbe | nindent 12 }}
           livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
+            {{- toYaml $top.Values.livenessProbe | nindent 12 }}
           resources:
             {{- toYaml .resources | nindent 12 }}
         {{- end }}
