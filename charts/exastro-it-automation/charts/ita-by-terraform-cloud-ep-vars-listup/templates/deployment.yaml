@@ -120,6 +120,12 @@ spec:
             {{- toYaml .Values.startupProbe | nindent 12 }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
+          # livenessProbe:
+          #   tcpSocket:
+          #     port: 8080
+          #   # httpGet:
+          #   #   path: /
+          #   #   port: 8080
           #   initialDelaySeconds: 5
           #   periodSeconds: 10
           # readinessProbe:
