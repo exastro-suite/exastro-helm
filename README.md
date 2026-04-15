@@ -21,7 +21,7 @@ helm repo add exastro https://www.exastro.org/exastro-helm/
 | :-------: | :-------: |
 | **- 1.5.6** | Kubernetes ver.1.23 , 1.26 |
 | **1.6.6** - **1.7.1** | Kubernetes ver.1.26 , 1.31, 1.33 |
-| **1.7.4** | Kubernetes ver.1.34 |
+| **1.7.5** | Kubernetes ver.1.34 |
 
 
 
