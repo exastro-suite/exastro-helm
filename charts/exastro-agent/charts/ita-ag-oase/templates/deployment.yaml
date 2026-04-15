@@ -84,10 +84,6 @@ spec:
               mountPath: {{ $top.Values.persistence.mountPath.homeDir }}
             - name: volume-{{ template "ita-ag-oase.name" $top }}-tmp
               mountPath: {{ $top.Values.persistence.mountPath.tmp }}
-          startupProbe:
-            {{- toYaml $top.Values.startupProbe | nindent 12 }}
-          livenessProbe:
-            {{- toYaml $top.Values.livenessProbe | nindent 12 }}
           resources:
             {{- toYaml .resources | nindent 12 }}
         {{- end }}
