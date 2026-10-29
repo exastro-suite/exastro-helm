@@ -164,6 +164,21 @@ exastro-it-automation:
       PLATFORM_API_HOST: "platform-api"
       PLATFORM_API_PORT: "8000"
 
+  ita-api-mcp-server:
+    replicaCount: 1
+    image:
+      repository: "docker.io/exastro/exastro-it-automation-api-ansible-execution-receiver"
+      tag: ""
+      pullPolicy: IfNotPresent
+    extraEnv:
+      LISTEN_PORT: "8000"
+      PLATFORM_API_HOST: "platform-api"
+      PLATFORM_API_PORT: "8000"
+      ITA_API_ORAGANIZATION_HOST: "ita-api-organization"
+      ITA_API_ORAGANIZATION_PORT: "8080"
+      QDRANT_HOST: "ita-qdrant"
+      QDRANT_PORT: "6333"
+
   ita-by-ansible-execute:
     replicaCount: 1
     image:
@@ -393,6 +408,13 @@ exastro-it-automation:
     replicaCount: 1
     image:
       repository: "docker.io/exastro/exastro-it-automation-web-server"
+      tag: ""
+      pullPolicy: IfNotPresent
+
+  ita-qdrant:
+    replicaCount: 1
+    image:
+      repository: "docker.io/exastro/qdrant"
       tag: ""
       pullPolicy: IfNotPresent
 
